@@ -27,7 +27,6 @@ and receive it in PDF format.
 - Bootstrap
 - HTML
 - CSS
-
 ### Back end
 - Python
 - Flask
