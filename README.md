@@ -99,4 +99,5 @@ flask run
 ```
 
 # Contact me 
-[Areeg Fahad](fahedareeg@gmail.com)
+<div style='color:red'>fahedareeg@gmail.com</div>
+
