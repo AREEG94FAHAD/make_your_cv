@@ -1,0 +1,363 @@
+<template>
+  <div class="container">
+    <div class="row">
+      <div class="col"><label for="exampleInputEmail1">Full Name </label></div>
+      <div class="col">
+        <div class="form-group">
+          <input
+            type="text"
+            v-model="name"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Aboute me</label>
+      <textarea
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+        v-model="abouteme"
+      ></textarea>
+    </div>
+    <label for="ac">ACADEMIC BACKGROUND</label>
+    <div
+      class="form-group"
+      v-for="(input, index) in acadmicBackground"
+      :key="index"
+    >
+      <input
+        type="text"
+        v-model="acadmicBackground[index].unversity"
+        class="form-control"
+        id="ac"
+        aria-describedby="emailHelp"
+        placeholder="University"
+      />
+      <input
+        type="text"
+        v-model="acadmicBackground[index].depart"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="college"
+      />
+      <i
+        class="fas fa-plus-circle"
+        @click="add(index)"
+        v-show="index == acadmicBackground.length - 1"
+        >Add fields</i
+      >
+      <i class="fas fa-plus-circle" @click="remove(index)" v-show="index != 0"
+        >Remove</i
+      >
+    </div>
+    <!--          ............... ............... ............... ............... -->
+    <label for="experience">Experience</label>
+    <div
+      class="form-group"
+      v-for="(input, index) in experience"
+      :key="'A' + index"
+    >
+      <input
+        type="text"
+        v-model="experience[index].experience"
+        class="form-control"
+        id="experience"
+        aria-describedby="emailHelp"
+        placeholder="Experience"
+      />
+      <i
+        class="fas fa-plus-circle"
+        @click="addexperience(index)"
+        v-show="index == experience.length - 1"
+        >Add fields</i
+      >
+      <i
+        class="fas fa-plus-circle"
+        @click="removeexperience(index)"
+        v-show="index != 0"
+        >Remove</i
+      >
+    </div>
+
+    <!--                              -->
+
+    <!-- skils -->
+
+    <label for="skill">Skills</label>
+    <div class="form-group" v-for="(input, index) in skills" :key="'C' + index">
+      <input
+        type="text"
+        v-model="skills[index].skill"
+        class="form-control"
+        id="skill"
+        aria-describedby="emailHelp"
+        placeholder="Skils"
+      />
+      <i
+        class="fas fa-plus-circle"
+        @click="addskill(index)"
+        v-show="index == skills.length - 1"
+        >Add fields</i
+      >
+      <i
+        class="fas fa-plus-circle"
+        @click="removeskill(index)"
+        v-show="index != 0"
+        >Remove</i
+      >
+    </div>
+    <!--  -->
+    <label for="certifcate">Certifcates</label>
+    <div
+      class="form-group"
+      v-for="(input, index) in certifcates"
+      :key="'D' + index"
+    >
+      <input
+        type="text"
+        v-model="certifcates[index].certifcate"
+        class="form-control"
+        id="certifcate"
+        aria-describedby="emailHelp"
+        placeholder="Certifcate"
+      />
+      <i
+        class="fas fa-plus-circle"
+        @click="addcertifcate(index)"
+        v-show="index == certifcates.length - 1"
+        >Add fields</i
+      >
+      <i
+        class="fas fa-plus-circle"
+        @click="removecertifcate(index)"
+        v-show="index != 0"
+        >Remove</i
+      >
+    </div>
+
+    <!--  -->
+    <label for="accomplishment">Accomplishments</label>
+    <div
+      class="form-group"
+      v-for="(input, index) in accomplishments"
+      :key="'E' + index"
+    >
+      <input
+        type="text"
+        v-model="accomplishments[index].accomplishment"
+        class="form-control"
+        id="accomplishment"
+        aria-describedby="emailHelp"
+        placeholder="Accomplishment"
+      />
+      <i
+        class="fas fa-plus-circle"
+        @click="addaccomplishment(index)"
+        v-show="index == accomplishments.length - 1"
+        >Add fields</i
+      >
+      <i
+        class="fas fa-plus-circle"
+        @click="removecaccomplishment(index)"
+        v-show="index != 0"
+        >Remove</i
+      >
+    </div>
+
+    <label for="accomplishment">Contact Info</label>
+    <div
+      class="form-group"
+      v-for="(input, index) in contactinfo"
+      :key="'f' + index"
+    >
+      <select v-model="contactinfo[index].type">
+        <option disabled value="">Please select one</option>
+        <option v-for="item in account" :value="item" :key="item">
+          {{ item }}
+        </option>
+      </select>
+      <input
+        type="text"
+        v-model="contactinfo[index].acount"
+        class="form-control"
+        id="accomplishment"
+        aria-describedby="emailHelp"
+        placeholder="Accomplishment"
+      />
+      <i
+        class="fas fa-plus-circle"
+        @click="addaccount(index)"
+        v-show="index == contactinfo.length - 1"
+        >Add fields</i
+      >
+      <i
+        class="fas fa-plus-circle"
+        @click="removeaccount(index)"
+        v-show="index != 0"
+        >Remove</i
+      >
+    </div>
+    <div class="form-group">
+      <label for="image">Choose Iamge</label>
+      <input
+        id="image"
+        type="file"
+        ref="fileupload"
+        name="file"
+        @change="onFileSelected"
+      />
+    </div>
+    <button @click="submitForm()">Submit</button>
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+  name: "Home",
+
+  components: {},
+  data() {
+    return {
+      name: "",
+      ll: "",
+      selectedFile: null,
+      abouteme: "",
+      acadmicBackground: [
+        {
+          unversity: "",
+          depart: "",
+        },
+      ],
+      experience: [
+        {
+          experience: "",
+        },
+      ],
+      skills: [
+        {
+          skill: "",
+        },
+      ],
+      certifcates: [
+        {
+          certifcate: "",
+        },
+      ],
+      contactinfo: [
+        {
+          type: "",
+          acount: "",
+        },
+      ],
+      account: ["Email", "Linked in", "Github", "Facebook", "website"],
+      accomplishments: [
+        {
+          accomplishment: "",
+        },
+      ],
+    };
+  },
+  methods: {
+    onFileSelected(event) {
+      if (event.target.files[0].size > 600000) {
+        alert("Image Size more 500KB");
+        this.$refs.fileupload.value = null;
+        this.selectedFile = "";
+      }
+
+      this.selectedFile = event.target.files[0];
+
+      console.log(event);
+    },
+    add() {
+      this.acadmicBackground.push({
+        unversity: "",
+        depart: "",
+      });
+      console.log(this.acadmicBackground);
+    },
+    remove(index) {
+      this.acadmicBackground.splice(index, 1);
+    },
+
+    addexperience() {
+      this.experience.push({
+        experience: "",
+      });
+      console.log(this.experience);
+    },
+    removeexperience(inde) {
+      this.experience.splice(inde, 1);
+    },
+    addskill() {
+      this.skills.push({
+        skill: "",
+      });
+      console.log(this.skils);
+    },
+    removeskill(inde) {
+      this.skills.splice(inde, 1);
+    },
+    addcertifcate() {
+      this.certifcates.push({
+        certifcate: "",
+      });
+      console.log(this.certifcates);
+    },
+    removecertifcate(inde) {
+      this.certifcates.splice(inde, 1);
+    },
+    addaccomplishment() {
+      this.accomplishments.push({
+        accomplishment: "",
+      });
+      console.log(this.accomplishment);
+    },
+    removecaccomplishment(inde) {
+      this.accomplishment.splice(inde, 1);
+    },
+    addaccount() {
+      this.contactinfo.push({
+        type: "",
+        acount: "",
+      });
+      console.log(this.contactinfo);
+    },
+    removeaccount(inde) {
+      this.contactinfo.splice(inde, 1);
+    },
+
+    submitForm() {
+      const fd = new FormData();
+      fd.append("image", this.selectedFile, this.selectedFile.name);
+      fd.append("name", JSON.stringify(this.name));
+      fd.append("abouteme", JSON.stringify(this.abouteme));
+      fd.append("acadmicBackground", JSON.stringify(this.acadmicBackground));
+      fd.append("experience", JSON.stringify(this.experience));
+      fd.append("skills", JSON.stringify(this.skills));
+      fd.append("certifcates", JSON.stringify(this.certifcates));
+      fd.append("contactinfo", JSON.stringify(this.contactinfo));
+      fd.append("accomplishments", JSON.stringify(this.accomplishments));
+
+      axios.post("http://127.0.0.1:5000/", fd, {}).then((response) => {
+        var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+        var fileLink = document.createElement("a");
+
+        fileLink.href = fileURL;
+        fileLink.setAttribute("download", "file.pdf");
+        document.body.appendChild(fileLink);
+
+        fileLink.click();
+      });
+    },
+  },
+};
+</script>
