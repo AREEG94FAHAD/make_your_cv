@@ -1,6 +1,11 @@
 # Make your cv with one minute 😊😊
 Make your CV easy peasy as lemon squeezy it is a platform to make cv with less than one minute 
 
+# Image
+![make your cv](https://user-images.githubusercontent.com/30151596/117553100-25a34600-b058-11eb-8670-d653d7b71105.PNG)
+
+
+
 # Features
 Add your main informations like
 - Full Name
