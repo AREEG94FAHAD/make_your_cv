@@ -44,7 +44,6 @@ npm install
 ```
 npm run serve
 ```
-<hr/>
 ## Back part
 #### Python 3.7
 Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
