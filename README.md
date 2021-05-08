@@ -12,7 +12,7 @@ Add your main informations like
 - Accomplishments
 - Contact Info
 - Iamge 
-and قeceive it in PDF format.
+and receive it in PDF format.
 
 # live demo
 1. [areegforcv.netlify.app](https://areegforcv.netlify.app/)
